@@ -12,7 +12,7 @@ document.getElementById("inscricaoForm").addEventListener("submit", async functi
     curso: document.getElementById("curso").value
   };
 
-  await fetch("https://script.google.com/macros/s/AKfycbx83Hq90gecUSMcwJ1TB2t6TB039u2F7R9veOykqoU2c1iQDZkh1YNXlO3Niohzle05/exec", {
+  await fetch("https://script.google.com/macros/s/AKfycbyOmajFTPCV5bbvDvKrr9YFGWI2d2xgarAMNBWs0u2rBaTkT0a_5R3YdWZtZdMaH6Sb/exec", {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
