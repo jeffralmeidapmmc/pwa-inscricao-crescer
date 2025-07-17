@@ -5,7 +5,7 @@ document.getElementById("inscricaoForm").addEventListener("submit", async functi
   const cpf = document.getElementById("cpf").value;
   const curso = document.getElementById("curso").value;
 
-  const resposta = await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+  const resposta = await fetch("https://script.google.com/macros/s/AKfycbzTP-_i0fMcxGxszMbRN4ByD_dNylg82P-BdJo83MFRIq8-Sy-pM48Eg3w4YYvGlWvx/exec", {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
