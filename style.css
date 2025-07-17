@@ -1,0 +1,39 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  background: #f4f4f4;
+}
+main {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+label, input {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+}
+input {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+button {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background-color: #0e8fcf;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0c7fb8;
+}
+#mensagem {
+  margin-top: 1rem;
+}
