@@ -1,43 +1,38 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("inscricaoForm");
-  const mensagem = document.getElementById("mensagem");
-  const btnEnviar = document.getElementById("btnEnviar");
+document.getElementById("inscricaoForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+  const cursosSelecionados = Array.from(document.getElementById("curso").selectedOptions).map(opt => opt.value).join(", ");
 
-    // Desabilita botão e altera texto para enviar...
-    btnEnviar.disabled = true;
-    btnEnviar.textContent = "Enviando...";
+  const dados = {
+    nome: document.getElementById("nome").value,
+    email: document.getElementById("email").value,
+    telefone: document.getElementById("telefoneWhatsapp").value,
+    telefoneRecados: document.getElementById("telefoneRecado").value,
+    nascimento: document.getElementById("nascimento").value,
+    cpf: document.getElementById("cpf").value,
+    bairro: document.getElementById("bairro").value,
+    curso: cursosSelecionados
+  };
 
-    const dados = {
-      nome: document.getElementById("nome").value,
-      email: document.getElementById("email").value,
-      telefoneWhatsapp: document.getElementById("telefoneWhatsapp").value,
-      telefoneRecado: document.getElementById("telefoneRecado").value,
-      nascimento: document.getElementById("nascimento").value,
-      cpf: document.getElementById("cpf").value,
-      bairro: document.getElementById("bairro").value,
-      curso: document.getElementById("curso").value,
-    };
+  const cpf = dados.cpf;
 
-    try {
-      await fetch("https://script.google.com/macros/s/AKfycbz1cr2flYYWy3O47BBuzclguQNfVRieWYwwoGVzKEHMXG6B5BYooYFM5DkySuVmmtx2/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(dados),
-      });
+  // Verifica inscrições anteriores
+  const resposta = await fetch(`https://script.google.com/macros/s/AKfycbyOmajFTPCV5bbvDvKrr9YFGWI2d2xgarAMNBWs0u2rBaTkT0a_5R3YdWZtZdMaH6Sb/exec?cpf=${cpf}`);
+  const conteudo = await resposta.json();
 
-      mensagem.textContent = "Inscrição enviada com sucesso!";
-      mensagem.classList.add("success");
-      form.reset();
-    } catch (error) {
-      mensagem.textContent = "Erro ao enviar, tente novamente.";
-      mensagem.classList.remove("success");
-    } finally {
-      btnEnviar.disabled = false;
-      btnEnviar.textContent = "Enviar";
-    }
+  let mensagem = "";
+
+  if (conteudo.totalInscricoes > 0) {
+    mensagem += `Este CPF já possui ${conteudo.totalInscricoes} inscrição(ões).`;
+  }
+
+  // Envia os dados
+  await fetch("https://script.google.com/macros/s/AKfycbyOmajFTPCV5bbvDvKrr9YFGWI2d2xgarAMNBWs0u2rBaTkT0a_5R3YdWZtZdMaH6Sb/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(dados),
   });
+
+  document.getElementById("mensagem").textContent = mensagem + " Inscrição enviada com sucesso!";
+  document.getElementById("inscricaoForm").reset();
 });
