@@ -4,8 +4,8 @@ document.getElementById("inscricaoForm").addEventListener("submit", async functi
   const dados = {
     nome: document.getElementById("nome").value,
     email: document.getElementById("email").value,
-    telefone: document.getElementById("telefone").value,
-    telefoneRecados: document.getElementById("telefoneRecados").value,
+    telefone: document.getElementById("telefoneWhatsapp").value,
+    telefoneRecados: document.getElementById("telefoneRecado").value,
     nascimento: document.getElementById("nascimento").value,
     cpf: document.getElementById("cpf").value,
     bairro: document.getElementById("bairro").value,
