@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("inscricaoForm").addEventListener("submit", async function(e) {
+  const form = document.getElementById("inscricaoForm");
+  const mensagem = document.getElementById("mensagem");
+  const btnEnviar = document.getElementById("btnEnviar");
+
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    // Desabilita botão e altera texto para enviar...
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = "Enviando...";
 
     const dados = {
       nome: document.getElementById("nome").value,
@@ -10,17 +18,26 @@ document.addEventListener("DOMContentLoaded", function () {
       nascimento: document.getElementById("nascimento").value,
       cpf: document.getElementById("cpf").value,
       bairro: document.getElementById("bairro").value,
-      curso: document.getElementById("curso").value
+      curso: document.getElementById("curso").value,
     };
 
-    await fetch("https://script.google.com/macros/s/AKfycbz1cr2flYYWy3O47BBuzclguQNfVRieWYwwoGVzKEHMXG6B5BYooYFM5DkySuVmmtx2/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(dados),
-    });
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbz1cr2flYYWy3O47BBuzclguQNfVRieWYwwoGVzKEHMXG6B5BYooYFM5DkySuVmmtx2/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(dados),
+      });
 
-    document.getElementById("mensagem").textContent = "Inscrição enviada com sucesso!";
-    document.getElementById("inscricaoForm").reset();
+      mensagem.textContent = "Inscrição enviada com sucesso!";
+      mensagem.classList.add("success");
+      form.reset();
+    } catch (error) {
+      mensagem.textContent = "Erro ao enviar, tente novamente.";
+      mensagem.classList.remove("success");
+    } finally {
+      btnEnviar.disabled = false;
+      btnEnviar.textContent = "Enviar";
+    }
   });
 });
