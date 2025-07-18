@@ -8,76 +8,72 @@ body {
 .container {
   max-width: 600px;
   margin: auto;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   display: block;
-  margin: 0 auto 1rem;
   max-width: 200px;
+  width: 100%;
   height: auto;
+  margin: 0 auto 20px;
 }
 
 h1 {
   text-align: center;
   color: #5d125b;
-  margin-bottom: 1.5rem;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 label {
-  margin-top: 1rem;
-  font-weight: bold;
+  display: block;
+  margin-top: 10px;
   color: #0e8fcf;
+  font-weight: bold;
 }
 
-input, select, button {
-  margin-top: 0.5rem;
-  padding: 0.7rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 10px;
   border: 1px solid #ccc;
 }
 
-select[multiple] {
-  height: auto;
-  min-height: 100px;
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 5px;
 }
 
 button {
   background-color: #c4d500;
   color: #000;
   border: none;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
   cursor: pointer;
+  width: 100%;
   font-weight: bold;
-  margin-top: 2rem;
-  transition: background 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #aabb00;
+  background-color: #a8bc00;
 }
 
-#mensagem {
-  margin-top: 1.5rem;
+#mensagem,
+#alerta,
+#contador {
+  margin-top: 15px;
   text-align: center;
   font-weight: bold;
   color: #5d125b;
-}
-
-@media screen and (max-width: 600px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .logo {
-    max-width: 100%;
-  }
 }

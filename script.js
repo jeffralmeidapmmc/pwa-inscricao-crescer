@@ -1,7 +1,8 @@
 document.getElementById("inscricaoForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  const cursosSelecionados = Array.from(document.getElementById("curso").selectedOptions).map(opt => opt.value).join(", ");
+  const checkboxes = document.querySelectorAll('input[name="curso"]:checked');
+  const cursosSelecionados = Array.from(checkboxes).map(cb => cb.value).join(", ");
 
   const dados = {
     nome: document.getElementById("nome").value,
@@ -14,25 +15,30 @@ document.getElementById("inscricaoForm").addEventListener("submit", async functi
     curso: cursosSelecionados
   };
 
-  const cpf = dados.cpf;
+  document.getElementById("alerta").textContent = "Verificando inscrições anteriores...";
+  document.getElementById("contador").textContent = "";
 
-  // Verifica inscrições anteriores
-  const resposta = await fetch(`https://script.google.com/macros/s/AKfycbyOmajFTPCV5bbvDvKrr9YFGWI2d2xgarAMNBWs0u2rBaTkT0a_5R3YdWZtZdMaH6Sb/exec?cpf=${cpf}`);
-  const conteudo = await resposta.json();
+  try {
+    const res = await fetch(
+      "https://script.google.com/macros/s/AKfycbz5ftZFA3rKNw_SVDWws6_sQ55PVeeKkQ7Zii4k086CCsoZ1gSgeSIemJXIRI9M5S9e/exec?cpf=" + encodeURIComponent(dados.cpf)
+    );
+    const json = await res.json();
+    const totalInscricoes = json.total || 0;
 
-  let mensagem = "";
-
-  if (conteudo.totalInscricoes > 0) {
-    mensagem += `Este CPF já possui ${conteudo.totalInscricoes} inscrição(ões).`;
+    document.getElementById("alerta").textContent = "CPF já utilizado anteriormente.";
+    document.getElementById("contador").textContent = "Total de inscrições anteriores: " + totalInscricoes;
+  } catch (error) {
+    document.getElementById("alerta").textContent = "";
+    document.getElementById("contador").textContent = "";
   }
 
-  // Envia os dados
-  await fetch("https://script.google.com/macros/s/AKfycbyOmajFTPCV5bbvDvKrr9YFGWI2d2xgarAMNBWs0u2rBaTkT0a_5R3YdWZtZdMaH6Sb/exec", {
+  await fetch("https://script.google.com/macros/s/AKfycbz5ftZFA3rKNw_SVDWws6_sQ55PVeeKkQ7Zii4k086CCsoZ1gSgeSIemJXIRI9M5S9e/exec", {
     method: "POST",
+    mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(dados),
   });
 
-  document.getElementById("mensagem").textContent = mensagem + " Inscrição enviada com sucesso!";
+  document.getElementById("mensagem").textContent = "Inscrição enviada com sucesso!";
   document.getElementById("inscricaoForm").reset();
 });
