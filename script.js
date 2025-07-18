@@ -19,9 +19,10 @@ document.getElementById("inscricaoForm").addEventListener("submit", async functi
   document.getElementById("contador").textContent = "";
 
   try {
-    const res = await fetch(
-      "https://script.google.com/macros/s/AKfycbz5ftZFA3rKNw_SVDWws6_sQ55PVeeKkQ7Zii4k086CCsoZ1gSgeSIemJXIRI9M5S9e/exec?cpf=" + encodeURIComponent(dados.cpf)
-    );
+const res = await fetch(
+  "https://script.google.com/macros/s/AKfycbxpvpIrEwBNtgOfaYssNRdPcf98kas4nWmfcNr1iVQ1wqfZd_y7cGH68XBDd8K2W4xX/exec?cpf=" + encodeURIComponent(dados.cpf)
+);
+
     const json = await res.json();
     const totalInscricoes = json.total || 0;
 
@@ -32,12 +33,13 @@ document.getElementById("inscricaoForm").addEventListener("submit", async functi
     document.getElementById("contador").textContent = "";
   }
 
-  await fetch("https://script.google.com/macros/s/AKfycbz5ftZFA3rKNw_SVDWws6_sQ55PVeeKkQ7Zii4k086CCsoZ1gSgeSIemJXIRI9M5S9e/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(dados),
-  });
+await fetch("https://script.google.com/macros/s/AKfycbxpvpIrEwBNtgOfaYssNRdPcf98kas4nWmfcNr1iVQ1wqfZd_y7cGH68XBDd8K2W4xX/exec", {
+  method: "POST",
+  mode: "no-cors",
+  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  body: new URLSearchParams(dados),
+});
+
 
   document.getElementById("mensagem").textContent = "Inscrição enviada com sucesso!";
   document.getElementById("inscricaoForm").reset();
