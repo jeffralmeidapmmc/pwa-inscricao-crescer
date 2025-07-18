@@ -12,7 +12,7 @@ document.getElementById("inscricaoForm").addEventListener("submit", async functi
     nascimento: document.getElementById("nascimento").value,
     cpf: document.getElementById("cpf").value,
     bairro: document.getElementById("bairro").value,
-    curso: cursosSelecionados
+    cursos: cursosSelecionados
   };
 
   document.getElementById("alerta").textContent = "Verificando inscrições anteriores...";
