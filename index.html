@@ -3,55 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#5d125b" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
   <title>Inscrição CRESCER</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/epomx1rx/y6i/v8x/l9k/crescer-logo-25.jpeg" alt="Logo CRESCER" class="logo" />
+
     <h1>Formulário de Inscrição</h1>
+
     <form id="inscricaoForm">
-      <label>Nome Completo:
-        <input type="text" id="nome" placeholder="Seu nome completo" required />
-      </label>
-      <label>E-mail:
-        <input type="email" id="email" placeholder="exemplo@dominio.com" required />
-      </label>
-      <label>Telefone com WhatsApp:
-        <input type="tel" id="telefoneWhatsapp" placeholder="(xx) xxxxx-xxxx" required />
-      </label>
-      <label>Telefone de Recados (opcional):
-        <input type="tel" id="telefoneRecado" placeholder="(xx) xxxx-xxxx" />
-      </label>
-      <label>Data de Nascimento:
-        <input type="text" id="nascimento" placeholder="DD/MM/AAAA" required />
-      </label>
-      <label>CPF:
-        <input type="text" id="cpf" placeholder="000.000.000-00" required />
-      </label>
-      <label>Bairro:
-        <input type="text" id="bairro" placeholder="Seu bairro" required />
-      </label>
-      <label>Curso:
-        <select id="curso" required>
-          <option value="">Selecione um curso</option>
-          <option>CURSO1</option>
-          <option>CURSO2</option>
-          <option>CURSO3</option>
-          <option>CURSO4</option>
-          <option>CURSO5</option>
-          <option>CURSO6</option>
-          <option>CURSO7</option>
-          <option>CURSO8</option>
-          <option>CURSO9</option>
-        </select>
-      </label>
-      <button type="submit" id="btnEnviar">Enviar</button>
-      <p id="mensagem"></p>
+      <label for="nome">Nome Completo:</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="telefoneWhatsapp">Telefone com WhatsApp:</label>
+      <input type="tel" id="telefoneWhatsapp" name="telefoneWhatsapp" required />
+
+      <label for="telefoneRecado">Telefone de Recados (opcional):</label>
+      <input type="tel" id="telefoneRecado" name="telefoneRecado" />
+
+      <label for="nascimento">Data de Nascimento:</label>
+      <input type="text" id="nascimento" name="nascimento" placeholder="DD/MM/AAAA" required />
+
+      <label for="cpf">CPF:</label>
+      <input type="text" id="cpf" name="cpf" required />
+
+      <label for="bairro">Bairro:</label>
+      <input type="text" id="bairro" name="bairro" required />
+
+      <label for="curso">Curso de Interesse:</label>
+      <select id="curso" name="curso" multiple required>
+        <option value="CURSO1">CURSO1</option>
+        <option value="CURSO2">CURSO2</option>
+        <option value="CURSO3">CURSO3</option>
+        <option value="CURSO4">CURSO4</option>
+        <option value="CURSO5">CURSO5</option>
+        <option value="CURSO6">CURSO6</option>
+        <option value="CURSO7">CURSO7</option>
+        <option value="CURSO8">CURSO8</option>
+        <option value="CURSO9">CURSO9</option>
+      </select>
+
+      <button type="submit">Enviar</button>
     </form>
+
+    <p id="mensagem"></p>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
